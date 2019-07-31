@@ -24,11 +24,11 @@ for (var i = 0; i < 12; i++) {
   //per passare parametro all'URI dell'API di Boolean
   aggiungimesi(date, date.month(i), tostring);
 
-  //Attivo la classe active solo al primo mese
-  $(".wrapper").children().first().addClass("active");
 
 }
 
+  //Attivo la classe active solo al primo mese
+  $(".wrapper").children().first().addClass("active");
 
 });//DOCUMENTY READY
 
