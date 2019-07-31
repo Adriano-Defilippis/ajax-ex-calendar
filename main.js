@@ -5,10 +5,26 @@ $(document).ready(function(){
   //  Aggiungere le festività a Gennaio
   //  Dare la possibilità di cambiare il mese
 
+
+
+
+  //salvo in una variabile l'oggetto di ritorno
+  //dell' anno che ci interessa eseminare
+  var date = moment([2018]);
+
+  aggiungimesi(date);
+
+});//DOCUMENTY READY
+
+
+// funzione da còiclare per 12 mesi
+function aggiungimesi (date){
+
   //Richiamo l'api per conoscere le festività
   //tramite l'oggetto di ritorno
   //Mese Gennaio (parmetro URI)
   var apiJannuary = "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0";
+
 
   $.ajax({
 
@@ -65,11 +81,6 @@ $(document).ready(function(){
 
 
   });
-
-  //salvo in una variabile l'oggetto di ritorno
-  //dell' anno che ci interessa eseminare
-  var date = moment([2018]);
-
 
   //Estrapolo dall'anno, l'oggetto del mese
   //0=Gennaio
@@ -137,10 +148,4 @@ $(document).ready(function(){
   console.log($(".mounth"));
 
 
-
-
-
-});//DOCUMENTY READY
-
-
-// funzione che inserisce il mese restituito
+}
