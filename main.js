@@ -1,3 +1,5 @@
+//Codice
+
 $(document).ready(function(){
 
   // STEP DA SEGUIRE (non specificato nel doc):
@@ -11,26 +13,38 @@ $(document).ready(function(){
   //salvo in una variabile l'oggetto di ritorno
   //dell' anno che ci interessa eseminare
   var date = moment([2018]);
-  //Estrapolo dall'anno, l'oggetto del mese
-  //0=Gennaio
 
+//Creo un ciclo che mi genera la funzione per 12 volte
+//0ssia per i 12 mesi
 for (var i = 0; i < 12; i++) {
-  aggiungimesi(date, date.month(i));
-  // aggiungimesi(date);
-  // aggiungimesi(date);
+  var tostring = i.toString();
+  console.log(tostring);
+
+  //PARAMETRI : Oggeto moment2018, mese con indice ciclato, stringa
+  //per passare parametro all'URI dell'API di Boolean
+  aggiungimesi(date, date.month(i), tostring);
+
 }
 
 
 });//DOCUMENTY READY
 
 
+
+
+
+
+
+
+
+
 // funzione da còiclare per 12 mesi
-function aggiungimesi (date, month){
+function aggiungimesi (date, month, parametro){
 
   //Richiamo l'api per conoscere le festività
   //tramite l'oggetto di ritorno
   //Mese Gennaio (parmetro URI)
-  var apiJannuary = "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=" + "0";
+  var apiJannuary = "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=" + parametro;
 
 
 
