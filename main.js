@@ -5,52 +5,9 @@ $(document).ready(function(){
   //  Aggiungere le festività a Gennaio
   //  Dare la possibilità di cambiare il mese
 
-  //salvo in una variabile l'oggetto di ritorno
-  //dell' anno che ci interessa eseminare
-  var date = moment([2018]);
-
-
-  //Estrapolo dall'anno, l'oggetto del mese
-  //0=Gennaio
-  var month = date.month(0);
-  //Mese formattato nel formato a lettere e per intero
-  var monthformattato = month.format("MMMM");
-  //Inserisco il Mese in pagina nell'H1
-  $("#mese").text(monthformattato);
-
-  console.log("Mese esaminato: ", monthformattato , month);
-
-  //Conto i giorni nel mese in questione
-  var contogiorni = month.daysInMonth();
-  console.log("Giorni nel mese: ", contogiorni);
-
-
-  //Ciclo chi in base ai giorni contati stampa una lista
-  //con anche il giorno della settimana relativo per il Mese in esame
-  for (var i = 1; i <= contogiorni; i++) {
-    //Estrapolo dall'oggeto month il la data del giorno con il ciclo
-    var dayOfMounth = month.date(i);
-    console.log(dayOfMounth.format("DD"));
-
-    //DAll'oggetto del giorno del mese,
-    //Estrapolo il nome del giorno
-    //formatto il giorno della settimana,  e lo aggiungo nell'append
-    var dayOfWeek = month.date(i);
-    console.log("Giorni della settimana: ", dayOfWeek.format("dddd"));
-
-    //Memorizzo in una variabile il formato data per confronto
-    //oggetto da chiamata Ajax
-    var dateFormat = month.date(i).format("YYYY-MM-DD");
-
-    $('.mounth').append(dayOfMounth.format("DD"), " ", dayOfWeek.format("dddd"), " ", month.date(i).format("YYYY-MM-DD") , "<br>");
-
-
-  }
-
-  console.log($(".mounth"));
-
   //Richiamo l'api per conoscere le festività
   //tramite l'oggetto di ritorno
+  //Mese Gennaio (parmetro URI)
   var apiJannuary = "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0";
 
   $.ajax({
@@ -76,12 +33,7 @@ $(document).ready(function(){
 
       });
 
-      // feste.each(function(){
-      //
-      //   $(this).val;
-      //   console.log($(this).val);
-      //
-      // });
+
     },
     error: function(error){
       alert("Rilevato errore: ", error);
@@ -89,6 +41,79 @@ $(document).ready(function(){
 
 
   });
+
+  //salvo in una variabile l'oggetto di ritorno
+  //dell' anno che ci interessa eseminare
+  var date = moment([2018]);
+
+
+  //Estrapolo dall'anno, l'oggetto del mese
+  //0=Gennaio
+  var month = date.month(0);
+  //Mese formattato nel formato a lettere e per intero
+  var monthformattato = month.format("MMMM");
+  //Inserisco il Mese in pagina nell'H1
+  var source = $('#templateMonth').html();
+  var template = Handlebars.compile(source);
+
+  var context = {mese: monthformattato};
+  var html = template(context);
+
+  $("body").append(html);
+  console.log(html);
+
+  // $("#mese").text(monthformattato);
+
+  console.log("Mese esaminato: ", monthformattato , month);
+
+  //Conto i giorni nel mese in questione
+  var contogiorni = month.daysInMonth();
+  console.log("Giorni nel mese: ", contogiorni);
+
+
+  //Ciclo chi in base ai giorni contati stampa una lista
+  //con anche il giorno della settimana relativo per il Mese in esame
+  for (var i = 1; i <= contogiorni; i++) {
+    //Estrapolo dall'oggeto month il la data del giorno con il ciclo
+    var dayOfMounth = month.date(i);
+    console.log(dayOfMounth.format("DD"));
+
+    //DAll'oggetto del giorno del mese,
+    //Estrapolo il nome del giorno
+    //formatto il giorno della settimana,  e lo aggiungo nell'append
+    var dayOfWeek = month.date(i);
+    console.log("Giorni della settimana: ", dayOfWeek.format("dddd"));
+
+    //Memorizzo in una variabile il formato data per confronto
+    //oggetto da chiamata Ajax
+    var dateFormat = month.date(i).format("YYYY-MM-DD");
+
+    //Aggiungo un template fatto con handlebars per creare
+    //il template per il calendario, e per aggiungere classi
+    //o attributi
+
+    //Inserisco template per creare dvi giorni all'interno del Mese
+    var source = $("#templateDayOfMonth").html();
+    var template = Handlebars.compile(source);
+
+    var context = {
+                    classDayBox: "giorni",
+                    addAttribute: dateFormat,
+                    date: dayOfMounth.format("DD"),
+                    day: dayOfWeek.format("dddd"),
+                    festivity: ""
+                  }
+
+    var html = template(context);
+
+    $('.mounth').append(html);
+
+
+  }
+
+  console.log($(".mounth"));
+
+
 
 
 
