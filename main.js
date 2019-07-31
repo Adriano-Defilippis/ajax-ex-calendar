@@ -11,9 +11,13 @@ $(document).ready(function(){
 
   //Estrapolo dall'anno, l'oggetto del mese
   //0=Gennaio
-  var month = date.month(1).format("MMMM");
+  var month = date.month(0);
+  var monthformattato = month.format("MMMM");
 
-  // var day = month.date(1);
+  var dayOfMounth = date.date(7);
+  var dayOfMounthformattato = dayOfMounth.format("DD");
+
+  var dayOfWeek = dayOfMounth.format("dddd");
 
 
   // var month = date.calendar();
@@ -21,8 +25,10 @@ $(document).ready(function(){
   // var day = month.format()
 
   // console.log(date);
-  console.log("Mese esaminato: ", month);
-  // console.log("Giorno del mese: ",day);
+  console.log("Mese esaminato: ", monthformattato , month);
+  console.log("Giorno del mese: ",dayOfMounthformattato,dayOfMounth);
+  console.log("Giorno della settimana: ",dayOfWeek);
+
 
 
 });
