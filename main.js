@@ -30,6 +30,22 @@ for (var i = 0; i < 12; i++) {
   //Attivo la classe active solo al primo mese
   $(".wrapper").children().first().addClass("active");
 
+  var prev = $('#prev');
+  var next = $("#next");
+
+  next.click(function(){
+
+    if ($(".mounth.active").hasClass("December")) {
+      $(".mounth.active").removeClass("active");
+      $('.wrapper').children().first().addClass("active");
+    }else{
+      $(".mounth.active").next().addClass("active placeholder");
+      $(".mounth.placeholder").prev().removeClass("active");
+
+    }
+
+  });
+
 });//DOCUMENTY READY
 
 
