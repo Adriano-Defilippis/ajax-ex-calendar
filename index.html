@@ -16,6 +16,16 @@
 
 
 
+
+
+    <!-- template mio da Clonare  -->
+    <div id="mioTemplate">
+
+      <span class="festa"></span>
+
+    </div>
+
+    <!-- Template per generare un dov contenitore mese vuoto -->
     <script id="templateMonth" type="text/x-handlebars-template">
 
       <div class='mounth'>
@@ -24,12 +34,13 @@
 
     </script>
 
+    <!-- Template per inserire all'interno del mese il div
+    del singolo giorno-->
     <script id="templateDayOfMonth" type="text/x-handlebars-template">
 
-    <div class="{{classDayBox}}" {{addAttribute}}>
+    <div class="{{classDayBox}}" valdata = "{{addAttribute}}">
       <span>{{date}}</span>
       <span>{{day}}</span>
-      <span>{{festivity}}</span>
     </div>
 
   </script>

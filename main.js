@@ -19,17 +19,37 @@ $(document).ready(function(){
       var feste = data.response;
       console.log("Responso da chiamata ajax ", feste);
 
-
+      //Ciclo all'interno dell'array di oggetti Json
       $.each(feste, function(index, val){
-
+        //Salvo questo elemento ciclato
         var thisEl = $(this);
         console.log(thisEl);
-
+        //Recupero il nome della festa
         var nomeFesta = val.name;
         console.log(nomeFesta);
-
+        //e la sua data
         var dataFesta = val.date;
         console.log(dataFesta);
+
+        console.log("oggetto jquery dei giorni nel div" , $(".mounth .giorni"));
+
+        var arrGiorni = $(".mounth .giorni");
+
+        $.each(arrGiorni, function(index, val){
+
+          // var day = $(this).hasAttr("valdata");
+
+          var thisday = $(this);
+          console.log("Attr day" ,thisday);
+
+          if (thisday.attr("valdata") === dataFesta) {
+            var spanClone = $("#mioTemplate .festa").clone();
+            var nuovoEl = spanClone.append(nomeFesta);
+            $(this).append(nuovoEl);
+            $( this ).css( "color", "red" );
+          }
+
+        });
 
       });
 
@@ -100,8 +120,7 @@ $(document).ready(function(){
                     classDayBox: "giorni",
                     addAttribute: dateFormat,
                     date: dayOfMounth.format("DD"),
-                    day: dayOfWeek.format("dddd"),
-                    festivity: ""
+                    day: dayOfWeek.format("dddd")
                   }
 
     var html = template(context);
