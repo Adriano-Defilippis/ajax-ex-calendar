@@ -1,3 +1,20 @@
+/* REGOLE GENERALI */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.mounth{
+  width: 200px;
+  height: auto;
+  margin: 10px;
+}
+
+.mounth h1{
+  text-align: center;
+}
+
 .giorni.red{
   color: red;
 }

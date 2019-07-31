@@ -46,7 +46,11 @@ $(document).ready(function(){
             var spanClone = $("#mioTemplate .festa").clone();
             var nuovoEl = spanClone.append(nomeFesta);
             $(this).append(nuovoEl);
-            $( this ).css( "color", "red" );
+            $( this ).css({
+                          "background-color": "yellow",
+                          "font-weight": "bolder",
+                          "color": "red"
+                          });
           }
 
         });
