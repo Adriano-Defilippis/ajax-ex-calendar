@@ -14,14 +14,11 @@ $(document).ready(function(){
   //Estrapolo dall'anno, l'oggetto del mese
   //0=Gennaio
 
-// for (var i = 0; i < 2; i++) {
-  aggiungimesi(date, date.month(0));
-  aggiungimesi(date, date.month(1));
-  aggiungimesi(date, date.month(2));
-  aggiungimesi(date, date.month(3));
+for (var i = 0; i < 12; i++) {
+  aggiungimesi(date, date.month(i));
   // aggiungimesi(date);
   // aggiungimesi(date);
-// }
+}
 
 
 });//DOCUMENTY READY
@@ -93,8 +90,8 @@ function aggiungimesi (date, month){
 
     var html = template(context);
 
-if ($('.mounth').hasClass(monthformattato)) {
-  $('.mounth').append(html);
+if (mesediv.hasClass(monthformattato)) {
+  mesediv.append(html);
 }
     // $('.mounth').append(html);
 
