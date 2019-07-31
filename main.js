@@ -11,91 +11,44 @@ $(document).ready(function(){
   //salvo in una variabile l'oggetto di ritorno
   //dell' anno che ci interessa eseminare
   var date = moment([2018]);
+  //Estrapolo dall'anno, l'oggetto del mese
+  //0=Gennaio
 
-  aggiungimesi(date);
+// for (var i = 0; i < 2; i++) {
+  aggiungimesi(date, date.month(0));
+  aggiungimesi(date, date.month(1));
+  aggiungimesi(date, date.month(2));
+  aggiungimesi(date, date.month(3));
+  // aggiungimesi(date);
+  // aggiungimesi(date);
+// }
+
 
 });//DOCUMENTY READY
 
 
 // funzione da còiclare per 12 mesi
-function aggiungimesi (date){
+function aggiungimesi (date, month){
 
   //Richiamo l'api per conoscere le festività
   //tramite l'oggetto di ritorno
   //Mese Gennaio (parmetro URI)
-  var apiJannuary = "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0";
+  var apiJannuary = "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=" + "0";
 
 
-  $.ajax({
-
-    url: apiJannuary,
-    method: "GET",
-    success: function(data){
-
-      var feste = data.response;
-      console.log("Responso da chiamata ajax ", feste);
-
-      //Ciclo all'interno dell'array di oggetti Json
-      $.each(feste, function(index, val){
-        //Salvo questo elemento ciclato
-        var thisEl = $(this);
-        console.log(thisEl);
-        //Recupero il nome della festa
-        var nomeFesta = val.name;
-        console.log(nomeFesta);
-        //e la sua data
-        var dataFesta = val.date;
-        console.log(dataFesta);
-
-        console.log("oggetto jquery dei giorni nel div" , $(".mounth .giorni"));
-
-        var arrGiorni = $(".mounth .giorni");
-
-        $.each(arrGiorni, function(index, val){
-
-          // var day = $(this).hasAttr("valdata");
-
-          var thisday = $(this);
-          console.log("Attr day" ,thisday);
-
-          if (thisday.attr("valdata") === dataFesta) {
-            var spanClone = $("#mioTemplate .festa").clone();
-            var nuovoEl = spanClone.append(nomeFesta);
-            $(this).append(nuovoEl);
-            $( this ).css({
-                          "background-color": "yellow",
-                          "font-weight": "bolder",
-                          "color": "red"
-                          });
-          }
-
-        });
-
-      });
 
 
-    },
-    error: function(error){
-      alert("Rilevato errore: ", error);
-    }
-
-
-  });
-
-  //Estrapolo dall'anno, l'oggetto del mese
-  //0=Gennaio
-  var month = date.month(0);
   //Mese formattato nel formato a lettere e per intero
   var monthformattato = month.format("MMMM");
-  //Inserisco il Mese in pagina nell'H1
-  var source = $('#templateMonth').html();
-  var template = Handlebars.compile(source);
+  //Inserisco il Mese in pagina nell'H1 e nel contenitore clonato del Mese
+  var mesediv = $('#mioT2 .mounth').clone();
+  mesediv.addClass(monthformattato)
+  var appendnomemese =mesediv.append("<h1>" + monthformattato + "<h1>");
 
-  var context = {mese: monthformattato};
-  var html = template(context);
 
-  $("body").append(html);
-  console.log(html);
+  $("body").append(appendnomemese);
+  mesediv.off();
+  $('#mioT2 .mounth').text("");
 
   // $("#mese").text(monthformattato);
 
@@ -140,12 +93,74 @@ function aggiungimesi (date){
 
     var html = template(context);
 
-    $('.mounth').append(html);
+if ($('.mounth').hasClass(monthformattato)) {
+  $('.mounth').append(html);
+}
+    // $('.mounth').append(html);
 
 
   }
+  $.ajax({
 
-  console.log($(".mounth"));
+    url: apiJannuary,
+    method: "GET",
+    success: function(data){
+
+      var feste = data.response;
+      console.log("Responso da chiamata ajax ", feste);
+
+      //Ciclo all'interno dell'array di oggetti Json
+      $.each(feste, function(index, val){
+        //Salvo questo elemento ciclato
+        var thisEl = $(this);
+        console.log(thisEl);
+        //Recupero il nome della festa
+        var nomeFesta = val.name;
+        console.log(nomeFesta);
+        //e la sua data
+        var dataFesta = val.date;
+        console.log(dataFesta);
+
+
+        var arrGiorni = $(".mounth .giorni");
+        if ($('.mounth').hasClass(monthformattato)) {
+
+
+        console.log("aarGiorni", arrGiorni);
+        $.each(arrGiorni, function(index, val){
+
+          // var day = $(this).hasAttr("valdata");
+
+          var thisday = $(this);
+          console.log("Attr day" ,thisday);
+
+          if (thisday.attr("valdata") === dataFesta) {
+            var spanClone = $("#mioTemplate .festa").clone();
+            var nuovoEl = spanClone.append(nomeFesta);
+            $(this).append(nuovoEl);
+            $( this ).css({
+                          "background-color": "yellow",
+                          "font-weight": "bolder",
+                          "color": "red"
+                          });
+          }
+
+        });
+      }
+
+      });
+
+
+    },
+    error: function(error){
+      alert("Rilevato errore: ", error);
+    }
+
+
+  });
+
+
+    console.log($(".mounth"));
 
 
 }
