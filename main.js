@@ -40,7 +40,20 @@ for (var i = 0; i < 12; i++) {
       $('.wrapper').children().first().addClass("active");
     }else{
       $(".mounth.active").next().addClass("active placeholder");
-      $(".mounth.placeholder").prev().removeClass("active");
+      $(".mounth.placeholder").prev().removeClass("active placeholder");
+
+    }
+
+  });
+
+  prev.click(function(){
+
+    if ($(".mounth.active").hasClass("January")) {
+      $(".mounth.active").removeClass("active");
+      $('.wrapper').children().last().addClass("active");
+    }else{
+      $(".mounth.active").prev().addClass("active placeholder");
+      $(".mounth.placeholder").next().removeClass("active placeholder");
 
     }
 
