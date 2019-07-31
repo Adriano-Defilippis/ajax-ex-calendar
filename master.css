@@ -8,11 +8,19 @@
 .mounth{
   width: 200px;
   height: auto;
-  margin: 10px;
+  margin: 10px auto;
 }
 
 .mounth h1{
   text-align: center;
+}
+
+.mounth{
+  display: none;
+}
+
+.mounth.active{
+  display: block;
 }
 
 .giorni.red{

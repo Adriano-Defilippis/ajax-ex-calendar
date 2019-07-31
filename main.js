@@ -18,11 +18,14 @@ $(document).ready(function(){
 //0ssia per i 12 mesi
 for (var i = 0; i < 12; i++) {
   var tostring = i.toString();
-  console.log(tostring);
+
 
   //PARAMETRI : Oggeto moment2018, mese con indice ciclato, stringa
   //per passare parametro all'URI dell'API di Boolean
   aggiungimesi(date, date.month(i), tostring);
+
+  //Attivo la classe active solo al primo mese
+  $(".wrapper").children().first().addClass("active");
 
 }
 
@@ -57,7 +60,7 @@ function aggiungimesi (date, month, parametro){
   var appendnomemese =mesediv.append("<h1>" + monthformattato + "<h1>");
 
 
-  $("body").append(appendnomemese);
+  $("body .wrapper").append(appendnomemese);
   mesediv.off();
   $('#mioT2 .mounth').text("");
 
