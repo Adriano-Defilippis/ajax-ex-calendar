@@ -25,23 +25,22 @@ $(document).ready(function(){
 
 
 
-  //Estrapolo dall'oggeto month il la data del giorno
-  var dayOfMounth = month.date(7);
-  //la formatto
-  var dayOfMounthformattato = dayOfMounth.format("DD");
-  console.log("Giorno del mese: ",dayOfMounthformattato,dayOfMounth);
-
-  //DAll'oggetto del giorno del mese,
-  //formatto il giorno della settimana
-  var dayOfWeek = dayOfMounth.format("dddd");
-  console.log("Giorno della settimana: ",dayOfWeek);
-
   //Ciclo chi in base ai giorni contati stampa una lista
   //con anche il giorno della settimana relativo per il Mese in esame
   for (var i = 1; i <= contogiorni; i++) {
-    month.date(i).format("DD");
-    $('.mounth').append(month.date(i).format("DD"),"<br>");
-    console.log(month.date(i).format("DD"));
+    //Estrapolo dall'oggeto month il la data del giorno
+    var dayOfMounth = month.date(i).format("DD");
+    console.log(dayOfMounth);
+
+    //DAll'oggetto del giorno del mese,
+    //Estrapolo il nome del giorno
+    //formatto il giorno della settimana,  e lo aggiungo nell'append
+    var dayOfWeek = month.date(i).format("dddd");
+    console.log("Giorni della settimana: ", dayOfWeek);
+
+    $('.mounth').append(dayOfMounth, " ", dayOfWeek,"<br>");
+
+
   }
 
 
