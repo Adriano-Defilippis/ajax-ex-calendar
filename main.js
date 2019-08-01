@@ -10,7 +10,7 @@ $(document).ready(function(){
 
   //salvo in una variabile l'oggetto di ritorno
   //dell' anno che ci interessa eseminare
-  var date = moment([2018]);
+  var date = moment([2020]);
 
 //Creo un ciclo che mi genera la funzione per 12 volte
 //0ssia per i 12 mesi
@@ -31,7 +31,7 @@ for (var i = 0; i < 12; i++) {
 
   next.click(function(){
 
-    if ($(".mounth.active").hasClass("December-2018")) {
+    if ($(".mounth.active").hasClass("December")) {
       $(".mounth.active").removeClass("active placeholder");
       $('.wrapper').children().first().addClass("active");
     }else{
@@ -44,7 +44,7 @@ for (var i = 0; i < 12; i++) {
 
   prev.click(function(){
 
-    if ($(".mounth.active").hasClass("January-2018")) {
+    if ($(".mounth.active").hasClass("January")) {
       $(".mounth.active").removeClass("active placeholder");
       $('.wrapper').children().last().addClass("active");
     }else{
