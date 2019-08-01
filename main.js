@@ -76,9 +76,10 @@ function aggiungimesi (date, month, parametro){
 
   //Mese formattato nel formato a lettere e per intero
   var monthformattato = month.format("MMMM-YYYY");
+  var monthrif =  month.format("MMMM");
   //Inserisco il Mese in pagina nell'H1 e nel contenitore clonato del Mese
   var mesediv = $('#mioT2 .mounth').clone();
-  mesediv.addClass(monthformattato)
+  mesediv.addClass(monthrif);
   var appendnomemese =mesediv.append("<h1>" + monthformattato + "<h1>");
 
 
@@ -131,14 +132,14 @@ function aggiungimesi (date, month, parametro){
 
     var html = template(context);
 
-if (mesediv.hasClass(monthformattato)) {
+if (mesediv.hasClass(monthrif)) {
   mesediv.append(html);
 }
     // $('.mounth').append(html);
 
 
   }
-  console.log("mounth.date(i )" , dayOfMounth);
+  console.log("mounth.date(i)" , dayOfMounth);
   $.ajax({
 
     url: apiJannuary,
@@ -162,7 +163,7 @@ if (mesediv.hasClass(monthformattato)) {
 
 
         var arrGiorni = $(".mounth .giorni");
-        if ($('.mounth').hasClass(monthformattato)) {
+        if ($('.mounth').hasClass(monthrif)) {
 
 
         // console.log("aarGiorni", arrGiorni);
