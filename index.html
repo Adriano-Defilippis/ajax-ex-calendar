@@ -38,10 +38,20 @@
     </div>
 
     <div id="mioT2">
-      <!-- Template per generare un dov contenitore mese vuoto -->
-      <div class='mounth'>
 
-      </div>
+      <h1></h1>
+      <!-- Template per generare un dov contenitore mese vuoto -->
+      <ul class='mounth'>
+
+        <li giorno="Mo"></li>
+        <li giorno="Tu"></li>
+        <li giorno="We"></li>
+        <li giorno="Th"></li>
+        <li giorno="Fr"></li>
+        <li giorno="Sa"></li>
+        <li giorno="Su"></li>
+
+      </ul>
 
     </div>
 
@@ -60,7 +70,7 @@
     del singolo giorno-->
     <script id="templateDayOfMonth" type="text/x-handlebars-template">
 
-    <li class="{{classDayBox}}" valdata = "{{addAttribute}}">
+    <li class="{{classDayBox}}" valdata = "{{addAttribute}}" giorno = "{{giornosettimana}}">
       <span>{{date}}</span>
       <span>{{day}}</span>
     </li>
