@@ -148,57 +148,62 @@ function aggiungimesi (date, month, parametro){
 
     url: apiJannuary,
     method: "GET",
-    success: function(data){
+    success: function(data, response){
 
       var feste = data.response;
-      console.log("Responso da chiamata ajax ", feste);
-
-      //Ciclo all'interno dell'array di oggetti Json
-      $.each(feste, function(index, val){
-        //Salvo questo elemento ciclato
-        var thisEl = $(this);
-        console.log(thisEl);
-        //Recupero il nome della festa
-        var nomeFesta = val.name;
-        console.log(nomeFesta);
-        //e la sua data
-        var dataFesta = val.date;
-        console.log(dataFesta);
-
-        var arrGiorni = $(".mounth .giorni");
-        //Controllo se gli oggetti con classe giorni
-        //generati precedentemente, h ala classe del mese corrente
-        if ($('.mounth').hasClass(monthrif)) {
 
 
-        // ciclo array dei giorni;
-        $.each(arrGiorni, function(index, val){
+      if (feste.length !== 0) {
 
-          // var day = $(this).hasAttr("valdata");
+        console.log("Responso da chiamata ajax ", feste);
+        console.log("lunghezza dell'array dei dati di response " ,response.length);
+        //Ciclo all'interno dell'array di oggetti Json
+        $.each(feste, function(index, val){
+          //Salvo questo elemento ciclato
+          var thisEl = $(this);
+          console.log(thisEl);
+          //Recupero il nome della festa
+          var nomeFesta = val.name;
+          console.log(nomeFesta);
+          //e la sua data
+          var dataFesta = val.date;
+          console.log(dataFesta);
 
-          var thisday = $(this);
-          // console.log("Attr day" ,thisday);
+          var arrGiorni = $(".mounth .giorni");
+          //Controllo se gli oggetti con classe giorni
+          //generati precedentemente, h ala classe del mese corrente
+          if ($('.mounth').hasClass(monthrif)) {
 
-          //Se l'attributo valdata del giorno esaminato,
-          //è uguale alla data di ritorno della festività
-          //da JSON
-          if (thisday.attr("valdata") === dataFesta) {
-            var spanClone = $("#mioTemplate .festa").clone();
-            var nuovoEl = spanClone.append(nomeFesta);
 
-            //All'elemento aggiungo lo span clonato da html
-            //con all'interno il nome della festa
-            $(this).append(nuovoEl);
-            //Cambio proprietà CSS al contenitore del giorno
-            $( this ).css({
-                          "background-color": "yellow",
-                          "font-weight": "bolder",
-                          "color": "red"
-                          });
+          // ciclo array dei giorni;
+          $.each(arrGiorni, function(index, val){
+
+            // var day = $(this).hasAttr("valdata");
+
+            var thisday = $(this);
+            // console.log("Attr day" ,thisday);
+
+            //Se l'attributo valdata del giorno esaminato,
+            //è uguale alla data di ritorno della festività
+            //da JSON
+            if (thisday.attr("valdata") === dataFesta) {
+              var spanClone = $("#mioTemplate .festa").clone();
+              var nuovoEl = spanClone.append(nomeFesta);
+
+              //All'elemento aggiungo lo span clonato da html
+              //con all'interno il nome della festa
+              $(this).append(nuovoEl);
+              //Cambio proprietà CSS al contenitore del giorno
+              $( this ).css({
+                            "background-color": "yellow",
+                            "font-weight": "bolder",
+                            "color": "red"
+                            });
+            }
+          });
           }
         });
-        }
-      });
+      }
     },
     error: function(error){
       alert("Rilevato errore: ", error);
