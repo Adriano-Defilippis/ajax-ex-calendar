@@ -1,11 +1,10 @@
 //Codice
 
 $(document).ready(function(){
-
-  // STEP DA SEGUIRE (non specificato nel doc):
-  //  Fare solo gennaio stampando la lista senza aggiungere le festività
-  //  Aggiungere le festività a Gennaio
-  //  Dare la possibilità di cambiare il mese
+// STEP DA SEGUIRE (non specificato nel doc):
+//  Fare solo gennaio stampando la lista senza aggiungere le festività
+//  Aggiungere le festività a Gennaio
+//  Dare la possibilità di cambiare il mese
 
 
 //Salvo in una variabile l'oggetto di ritorno
@@ -152,7 +151,8 @@ function aggiungimesi (date, month, parametro){
 
       var feste = data.response;
 
-
+      //Controllo che mi fa partire lo script soltato se
+      //la chiamata realtiva a quel mese restituisce qualche dato
       if (feste.length !== 0) {
 
         console.log("Responso da chiamata ajax ", feste);
