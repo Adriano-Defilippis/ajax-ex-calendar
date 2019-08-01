@@ -8,9 +8,9 @@ $(document).ready(function(){
   //  Dare la possibilità di cambiare il mese
 
 
-  //salvo in una variabile l'oggetto di ritorno
-  //dell' anno che ci interessa eseminare
-  var date = moment([2020]);
+//Salvo in una variabile l'oggetto di ritorno
+//dell' anno che ci interessa eseminare
+var date = moment([2018]);
 
 //Creo un ciclo che mi genera la funzione per 12 volte
 //0ssia per i 12 mesi
@@ -26,9 +26,11 @@ for (var i = 0; i < 12; i++) {
   //Attivo la classe active solo al primo mese
   $(".wrapper").children().first().addClass("active");
 
+  //Selezione bottoni in pagina
   var prev = $('#prev');
   var next = $("#next");
 
+  //AZIONE PER CAMBIARE MESE
   next.click(function(){
 
     if ($(".mounth.active").hasClass("December")) {
@@ -132,14 +134,16 @@ function aggiungimesi (date, month, parametro){
 
     var html = template(context);
 
-if (mesediv.hasClass(monthrif)) {
-  mesediv.append(html);
-}
-    // $('.mounth').append(html);
-
+    //Controllo se il mese ha la classe che identifica il mese giusto
+    //dove fare l'append dei giorni generati da template
+    if (mesediv.hasClass(monthrif)) {
+        mesediv.append(html);
+    }
 
   }
-  console.log("mounth.date(i)" , dayOfMounth);
+
+  //CHIAMATA AJAX recupero oggetto Jsono con le
+  //informazioni sulle festività DEL MESE CORRENTE!
   $.ajax({
 
     url: apiJannuary,
@@ -161,12 +165,13 @@ if (mesediv.hasClass(monthrif)) {
         var dataFesta = val.date;
         console.log(dataFesta);
 
-
         var arrGiorni = $(".mounth .giorni");
+        //Controllo se gli oggetti con classe giorni
+        //generati precedentemente, h ala classe del mese corrente
         if ($('.mounth').hasClass(monthrif)) {
 
 
-        // console.log("aarGiorni", arrGiorni);
+        // ciclo array dei giorni;
         $.each(arrGiorni, function(index, val){
 
           // var day = $(this).hasAttr("valdata");
@@ -174,33 +179,33 @@ if (mesediv.hasClass(monthrif)) {
           var thisday = $(this);
           // console.log("Attr day" ,thisday);
 
+          //Se l'attributo valdata del giorno esaminato,
+          //è uguale alla data di ritorno della festività
+          //da JSON
           if (thisday.attr("valdata") === dataFesta) {
             var spanClone = $("#mioTemplate .festa").clone();
             var nuovoEl = spanClone.append(nomeFesta);
+
+            //All'elemento aggiungo lo span clonato da html
+            //con all'interno il nome della festa
             $(this).append(nuovoEl);
+            //Cambio proprietà CSS al contenitore del giorno
             $( this ).css({
                           "background-color": "yellow",
                           "font-weight": "bolder",
                           "color": "red"
                           });
           }
-
         });
-      }
-
+        }
       });
-
-
     },
     error: function(error){
       alert("Rilevato errore: ", error);
     }
 
-
   });
 
-
     console.log($(".mounth"));
-
 
 }
