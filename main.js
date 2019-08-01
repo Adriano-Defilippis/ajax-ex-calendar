@@ -8,8 +8,6 @@ $(document).ready(function(){
   //  Dare la possibilità di cambiare il mese
 
 
-
-
   //salvo in una variabile l'oggetto di ritorno
   //dell' anno che ci interessa eseminare
   var date = moment([2018]);
@@ -19,11 +17,9 @@ $(document).ready(function(){
 for (var i = 0; i < 12; i++) {
   var tostring = i.toString();
 
-
   //PARAMETRI : Oggeto moment2018, mese con indice ciclato, stringa
   //per passare parametro all'URI dell'API di Boolean
   aggiungimesi(date, date.month(i), tostring);
-
 
 }
 
@@ -78,11 +74,8 @@ function aggiungimesi (date, month, parametro){
   //Mese Gennaio (parmetro URI)
   var apiJannuary = "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=" + parametro;
 
-
-
-
   //Mese formattato nel formato a lettere e per intero
-  var monthformattato = month.format("MMMM");
+  var monthformattato = month.format("MMMM-YYYY");
   //Inserisco il Mese in pagina nell'H1 e nel contenitore clonato del Mese
   var mesediv = $('#mioT2 .mounth').clone();
   mesediv.addClass(monthformattato)
@@ -108,6 +101,8 @@ function aggiungimesi (date, month, parametro){
     //Estrapolo dall'oggeto month il la data del giorno con il ciclo
     var dayOfMounth = month.date(i);
     console.log(dayOfMounth.format("DD"));
+
+
 
     //DAll'oggetto del giorno del mese,
     //Estrapolo il nome del giorno
@@ -143,6 +138,7 @@ if (mesediv.hasClass(monthformattato)) {
 
 
   }
+  console.log("mounth.date(i )" , dayOfMounth);
   $.ajax({
 
     url: apiJannuary,
@@ -169,13 +165,13 @@ if (mesediv.hasClass(monthformattato)) {
         if ($('.mounth').hasClass(monthformattato)) {
 
 
-        console.log("aarGiorni", arrGiorni);
+        // console.log("aarGiorni", arrGiorni);
         $.each(arrGiorni, function(index, val){
 
           // var day = $(this).hasAttr("valdata");
 
           var thisday = $(this);
-          console.log("Attr day" ,thisday);
+          // console.log("Attr day" ,thisday);
 
           if (thisday.attr("valdata") === dataFesta) {
             var spanClone = $("#mioTemplate .festa").clone();
