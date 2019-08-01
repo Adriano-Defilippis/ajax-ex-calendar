@@ -31,7 +31,7 @@ for (var i = 0; i < 12; i++) {
 
   next.click(function(){
 
-    if ($(".mounth.active").hasClass("December")) {
+    if ($(".mounth.active").hasClass("December-2018")) {
       $(".mounth.active").removeClass("active placeholder");
       $('.wrapper').children().first().addClass("active");
     }else{
@@ -44,7 +44,7 @@ for (var i = 0; i < 12; i++) {
 
   prev.click(function(){
 
-    if ($(".mounth.active").hasClass("January")) {
+    if ($(".mounth.active").hasClass("January-2018")) {
       $(".mounth.active").removeClass("active placeholder");
       $('.wrapper').children().last().addClass("active");
     }else{
