@@ -32,26 +32,28 @@ for (var i = 0; i < 12; i++) {
   //AZIONE PER CAMBIARE MESE
   next.click(function(){
 
-    if ($(".mounth.active").hasClass("December")) {
-      $(".mounth.active").removeClass("active placeholder");
-      $('.wrapper').children().first().addClass("active");
-    }else{
-      $(".mounth.active").next().addClass("active placeholder");
-      $(".mounth.placeholder").prev().removeClass("active placeholder");
-
+    var checked = $('.mounth.active');
+    $(".mounth").removeClass("active");
+    checked.next().addClass("active");
+    // inserire controllo ultimo e primo  mese
+    if (checked.hasClass("December")) {
+        checked.removeClass("active");
+        $(".mounth.January").addClass("active");
     }
+
 
   });
 
   prev.click(function(){
 
-    if ($(".mounth.active").hasClass("January")) {
-      $(".mounth.active").removeClass("active placeholder");
-      $('.wrapper').children().last().addClass("active");
-    }else{
-      $(".mounth.active").prev().addClass("active placeholder");
-      $(".mounth.placeholder").next().removeClass("active placeholder");
+    var checked = $('.mounth.active');
+    $(".mounth").removeClass("active");
+    checked.prev().addClass("active");
 
+    if (checked.hasClass("January")) {
+
+      checked.removeClass("active");
+      $(".mounth.December").addClass("active");
     }
 
   });
@@ -67,7 +69,7 @@ for (var i = 0; i < 12; i++) {
 
 
 
-// funzione da còiclare per 12 mesi
+// funzione da ciclare per 12 mesi
 function aggiungimesi (date, month, parametro){
 
   //Richiamo l'api per conoscere le festività
